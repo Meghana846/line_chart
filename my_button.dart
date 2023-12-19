@@ -1,47 +1,15 @@
-import 'package:fl_chart/fl_chart.dart';
+// heart_rate.dart
 import 'package:flutter/material.dart';
-import 'my_button.dart';
+import 'package:fl_chart/fl_chart.dart';
 
-void main() {
-  runApp(const MainApp());
-}
 
-class MainApp extends StatelessWidget {
-  const MainApp({Key? key});
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-    debugShowCheckedModeBanner: false, // Set this to false to remove the debug banner
-    home: Scaffold(
-      appBar: AppBar(
-        title: Align(
-          alignment: Alignment.center,
-          child: const Text('Flutter Line Chart'),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            HeartRate(),      // Use the first widget
-            SizedBox(height: 16),  // Add some spacing
-            NewWidget(),   // Use the second widget
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-class NewWidget extends StatelessWidget {
-  const NewWidget({
-    super.key,
-  });
+class HeartRate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 400,
-    child: LineChart(
+      height: 40,
+    child : LineChart(
       LineChartData(
         minX: 0,
         maxX: 300,
