@@ -1,5 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:csv/csv.dart';
+import 'dart:convert';
+import 'dart:io';
 import 'my_button.dart';
 
 void main() {
@@ -19,11 +22,11 @@ class MainApp extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             HeartRate(),      // Use the first widget
-            SizedBox(height: 16),  // Add some spacing
+            SizedBox(height: 30),  // Add some spacing
             NewWidget(),   // Use the second widget
           ],
         ),
@@ -40,7 +43,7 @@ class NewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 400,
+      height: 300, width: 450,
     child: LineChart(
       LineChartData(
         minX: 0,

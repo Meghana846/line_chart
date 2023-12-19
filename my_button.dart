@@ -8,7 +8,7 @@ class HeartRate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: 300, width: 450,
     child : LineChart(
       LineChartData(
         minX: 0,
