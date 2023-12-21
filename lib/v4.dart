@@ -4,9 +4,9 @@ import 'package:csv/csv.dart';
 import 'dart:typed_data' show Uint8List;
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 
-class HeartRate extends StatelessWidget {
+class v4 extends StatelessWidget {
   final String csvFilePath;
-  HeartRate({required this.csvFilePath});
+  v4({required this.csvFilePath});
 
   Future<List<List<double>>> _readCSVData() async {
     // Read the CSV file from the assets
@@ -19,7 +19,7 @@ class HeartRate extends StatelessWidget {
     // Extract values from the first column (starting from row 2)
     List<List<double>> extractedData = [];
     int counter = 1;
-    for (var row in rows.skip(1).take(299)) {
+    for (var row in rows.skip(1).take(498)) {
       double yValue = double.parse(row[0].toString());
       extractedData.add([counter.toDouble(), yValue]);
       counter++;
@@ -54,13 +54,13 @@ class HeartRate extends StatelessWidget {
   Widget _buildChart(List<List<double>> data) {
     return SizedBox(
       height: 300,
-      width: 450,
+      width: 700,
       child: LineChart(
         LineChartData(
           minX: 0,
           maxX: 500, // Adjust the max value as needed
           minY: 0,
-          maxY: 800,
+          maxY: 10,
           gridData: FlGridData(
             show: true,
             getDrawingHorizontalLine: (value) {
@@ -77,7 +77,7 @@ class HeartRate extends StatelessWidget {
           ),
           borderData: FlBorderData(
             show: true,
-            border: Border.all(color: const Color(0xff37434d), width: 1),
+            border: Border.all(color: const Color(0xff37434d), width: 3),
           ),
           titlesData: FlTitlesData(
             topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -92,6 +92,9 @@ class HeartRate extends StatelessWidget {
               barWidth: 3,
               belowBarData: BarAreaData(
                 show: true,
+              ),
+              dotData: FlDotData(
+                show: false,
               ),
             ),
           ],

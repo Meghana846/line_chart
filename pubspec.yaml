@@ -23,7 +23,15 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/output.csv
-    - assets/output1.csv
-    - assets/value1.csv
-    - assets/value2.csv
+    - assets/Lead1.csv
+    - assets/Lead2.csv
+    - assets/Lead3.csv
+    - assets/V1.csv
+    - assets/V2.csv
+    - assets/V3.csv
+    - assets/V4.csv
+    - assets/V5.csv
+    - assets/V6.csv
+    - assets/avf.csv
+    - assets/avl.csv
+    - assets/avr.csv

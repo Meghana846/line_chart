@@ -1,9 +1,18 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:csv/csv.dart';
-import 'dart:typed_data' show Uint8List;
-import 'package:flutter/services.dart' show ByteData, rootBundle;
-import 'package:untitled/my_button.dart';
+import 'package:flutter/rendering.dart';
+import 'package:untitled/lead1.dart';
+import 'package:untitled/lead2.dart';
+import 'package:untitled/lead3.dart';
+import 'package:untitled/v1.dart';
+import 'package:untitled/v2.dart';
+import 'package:untitled/v3.dart';
+import 'package:untitled/v4.dart';
+import 'package:untitled/v5.dart';
+import 'package:untitled/v6.dart';
+import 'package:untitled/avl.dart';
+import 'package:untitled/avr.dart';
+import 'package:untitled/avf.dart';
+
 
 void main() {
   runApp(const MainApp());
@@ -13,115 +22,157 @@ class MainApp extends StatelessWidget {
   const MainApp({Key? key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      appBar: AppBar(
-        title: Align(
-          alignment: Alignment.center,
-          child: const Text('Flutter Line Chart'),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            HeartRate(csvFilePath: 'assets/value2.csv'),
-            SizedBox(height: 30),
-            FutureBuilder( // Use FutureBuilder to read data from CSV file asynchronously
-              future: _readCSVData(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  if (snapshot.hasError) {
-                    return Text('Error loading data: ${snapshot.error}');// Display an error message if an error occurred
-                  }
-                  // If data is loaded, create LineChart
-                  List<List<double>>? data = snapshot.data as List<List<double>>?;
-                  return data != null
-                      ? NewWidget(data: data)
-                      : Text('Data is null');
-                } else {
-                  return CircularProgressIndicator();
-                }
-              },
+  Widget build(BuildContext context) =>
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Align(
+              alignment: Alignment.center,
+              child: const Text('Flutter Line Chart'),
             ),
-          ],
-        ),
-      ),
-    ),
-  );
-
-  static Future<List<List<double>>> _readCSVData() async {
-    final ByteData data = await rootBundle.load('assets/value1.csv'); // Read the CSV file from the assets
-    final List<List<dynamic>> rows = const CsvToListConverter().convert(
-      String.fromCharCodes(Uint8List.view(data.buffer)),
-      shouldParseNumbers: true,
-    );
-
-    List<List<double>> extractedData = [];// Extract values from the first column (starting from row 2)
-    int counter = 1;
-    for (var row in rows.skip(1).take(298)) {
-      double yValue = double.parse(row[0].toString());
-      extractedData.add([counter.toDouble(), yValue]);
-      counter++;
-    }
-
-    // Print the extracted data
-    //print('Extracted Data: $extractedData');
-    return extractedData;
-  }
-}
-
-class NewWidget extends StatelessWidget {
-  final List<List<double>> data;
-  const NewWidget({required this.data});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      width: 450,
-      child: LineChart(
-        LineChartData(
-          minX: 0,
-          maxX: 500,
-          minY: 0,
-          maxY: 10,
-          gridData: FlGridData(
-            show: true,
-            getDrawingHorizontalLine: (value) {
-              return FlLine(
-                color: const Color(0xff37434d),
-              );
-            },
-            getDrawingVerticalLine: (value) {
-              return FlLine(
-                  color: const Color(0xff37434d), strokeWidth: 0.8,
-              );
-            },
           ),
-          borderData: FlBorderData(
-            show: true,
-            border: Border.all(color: const Color(0xff37434d), width: 1),
-          ),
-          titlesData: FlTitlesData(
-            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          ),
-          lineBarsData: [
-            LineChartBarData(
-              spots: data
-                  .map((point) => FlSpot(point[0], point[1]))
-                  .toList(),
-              color: const Color(0xff02d39a),
-              barWidth: 3,
-              belowBarData: BarAreaData(
-                show: true,
+          body: Container(
+            width: MediaQuery.sizeOf(context).width,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(height: 16),
+                  Text(
+                    'Lead Graphs',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                    SizedBox(width: MediaQuery.sizeOf(context).width,
+                    height: 300,
+
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        SizedBox(width: MediaQuery.sizeOf(context).width * 0.32,
+                          height: 300,
+                          child: Lead1(csvFilePath: 'assets/Lead1.csv'),
+                        ),
+                        SizedBox(width: MediaQuery.sizeOf(context).width * 0.32,
+                          height: 300,
+                          child: Lead2(csvFilePath: 'assets/Lead2.csv'),
+                        ),
+                        SizedBox(width: MediaQuery.sizeOf(context).width * 0.32,
+                          height: 300,
+                          child: Lead3(csvFilePath: 'assets/Lead3.csv'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+                  SizedBox(height: 24),
+                  Text(
+                    'V-Graphs',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      SizedBox(width: MediaQuery.sizeOf(context).width,
+                        height: 300,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            SizedBox(width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: v1(csvFilePath: 'assets/V1.csv'),
+                            ),
+                            SizedBox(width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: v2(csvFilePath: 'assets/V2.csv'),
+                            ),
+                            SizedBox(width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: v3(csvFilePath: 'assets/V3.csv'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+                  Row(
+                    children: [
+                      SizedBox(width: MediaQuery.sizeOf(context).width,
+                        height: 300,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: v4(csvFilePath: 'assets/V4.csv'),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: v5(csvFilePath: 'assets/V5.csv'),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: v6(csvFilePath: 'assets/V6.csv'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+                  Text(
+                    'AVF AVL AVR-Graphs',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(width: MediaQuery.sizeOf(context).width,
+                        height: 300,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: avf(csvFilePath: 'assets/avf.csv'),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: avl(csvFilePath: 'assets/avl.csv'),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.32,
+                              height: 300,
+                              child: avr(csvFilePath: 'assets/avr.csv'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24),
+                ],
               ),
             ),
-          ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
