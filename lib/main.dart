@@ -51,7 +51,6 @@ class MainApp extends StatelessWidget {
                     children: [
                     SizedBox(width: MediaQuery.sizeOf(context).width,
                     height: 300,
-
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
@@ -94,7 +93,7 @@ class MainApp extends StatelessWidget {
                             ),
                             SizedBox(width: MediaQuery.sizeOf(context).width * 0.32,
                               height: 300,
-                              child: v2(csvFilePath: 'assets/V2.csv'),
+                              child: V2(csvFilePath: 'assets/V2.csv'),
                             ),
                             SizedBox(width: MediaQuery.sizeOf(context).width * 0.32,
                               height: 300,
