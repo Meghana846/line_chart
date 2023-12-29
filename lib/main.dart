@@ -39,14 +39,8 @@ class MainApp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(height: 16),
-                  Text(
-                    'Lead Graphs',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 10),
+
+                  //SizedBox(height: 10),
                   Row(
                     children: [
                     SizedBox(width: MediaQuery.sizeOf(context).width,
@@ -71,15 +65,9 @@ class MainApp extends StatelessWidget {
                   ),
                 ],
               ),
-                  SizedBox(height: 24),
-                  Text(
-                    'V-Graphs',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 40),
+
+                  //SizedBox(height: 10),
                   Row(
                     children: [
                       SizedBox(width: MediaQuery.sizeOf(context).width,
@@ -104,7 +92,7 @@ class MainApp extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 24),
+                  SizedBox(height: 40),
                   Row(
                     children: [
                       SizedBox(width: MediaQuery.sizeOf(context).width,
@@ -132,14 +120,8 @@ class MainApp extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 24),
-                  Text(
-                    'AVF AVL AVR-Graphs',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  SizedBox(height: 40),
+
                   Row(
                     children: [
                       SizedBox(width: MediaQuery.sizeOf(context).width,

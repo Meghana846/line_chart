@@ -76,8 +76,17 @@ class _avrState extends State<avr> {
   }
 
   Widget _buildAnimatedChart(List<List<double>> data) {
-    return SizedBox(
-      height: 300,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+      Text('Graph-AVR', // Replace with your desired title
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    SizedBox(
+      height: 260,
       width: 700,
       child: TweenAnimationBuilder<double>(
           tween: Tween(begin: 0.0, end: data.length.toDouble()),
@@ -157,6 +166,8 @@ class _avrState extends State<avr> {
             }
           }
       ),
+    ),
+    ],
     );
   }
 }
